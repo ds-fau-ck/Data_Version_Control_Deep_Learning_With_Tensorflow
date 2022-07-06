@@ -1,5 +1,5 @@
 # DVC - Deep Learning - Tensorflow - AIOPS - CNN_VGG16
-
+ download data -->[source](https://drive.google.com/drive/u/5/folders/1tz4IOoJKdi999IRdqJY04VOifyllRzj1)
 # comands -  
 ## Step 01: Create a New environments
 ```bash
