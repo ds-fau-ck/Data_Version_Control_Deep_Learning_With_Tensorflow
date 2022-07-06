@@ -1,6 +1,7 @@
 from src.utils.all_utils import read_yaml, create_directory
 from src.utils.models import load_full_model
 from src.utils.callbacks import get_callbacks
+from src.utils.data_managements import train_valid_generator
 import argparse
 import pandas as pd
 import os
@@ -32,6 +33,14 @@ def train_model(config_path, params_path):
     model=load_full_model(untrained_full_model_path)
     callback_dir_path=os.path.join(artifacts_dir,artifacts["CALLBACKS_DIR"])
     calbacks=get_callbacks(callback_dir_path)
+
+    train_generator, valid_generator=train_valid_generator(
+        data_dir=artifacts["DATA_DIR"],
+        IMAGE_SIZE=tuple(params["IMAGE_SIZE"][:-1]),
+        BATCH_SIZE=params["BATCH_SIZE"],
+        do_data_augmentation=params["AUGMENTATION"]
+
+    )
 
 
 
