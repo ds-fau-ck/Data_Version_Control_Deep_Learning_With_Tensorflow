@@ -32,7 +32,7 @@ def train_model(config_path, params_path):
 
     model=load_full_model(untrained_full_model_path)
     callback_dir_path=os.path.join(artifacts_dir,artifacts["CALLBACKS_DIR"])
-    calbacks=get_callbacks(callback_dir_path)
+    callbacks=get_callbacks(callback_dir_path)
 
     train_generator, valid_generator=train_valid_generator(
         data_dir=artifacts["DATA_DIR"],
@@ -40,6 +40,16 @@ def train_model(config_path, params_path):
         BATCH_SIZE=params["BATCH_SIZE"],
         do_data_augmentation=params["AUGMENTATION"]
 
+    )
+    steps_per_epochs=train_generator.samples// train_generator.batch_size
+    validation_step=valid_generator.samples// valid_generator.batch_size
+    model.fit(
+        train_generator, 
+        validation_data=valid_generator, 
+        epochs=params["EPOCHS"],
+        steps_per_epoch=steps_per_epochs,
+        validation_steps=validation_step,
+        callbacks=callbacks
     )
 
 
