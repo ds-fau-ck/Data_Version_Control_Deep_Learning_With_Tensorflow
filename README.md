@@ -17,6 +17,7 @@ dvc init
 ## step 04: Create empty files and folders- 
 ```bash
 mkdir -p src/utils config
-touch src/stage_01_load_save.py src/utils/all_utils.py
+touch src/__init__.py src/utils/__init__.py 
+src/stage_01_load_save.py src/utils/all_utils.py
 touch README.md, .gitignore setup.py dvc.yaml params.yaml
 ``` 
